@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payslip Generator</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="content-container">
+            <div class="header-section">
+                <div class="upload-logo">
+                    <div id="logo">
+                        <button id="uploadButton" onclick="document.getElementById('fileInput').click()"
+                            aria-label="Upload Logo">Upload Logo</button>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="loadLogo()">
+                        <p>Upload Logo<br>240x240 pixels @72 DPI<br>Maximum size of 1MB</p>
+                    </div>
+                </div>
+                <div id="payMonth">
+                    <label for="date" style="font-size:12px;"><b>Payslip For the Month</b></label>
+                    <input type="month" name="date" id="date" style="font-size:12px;" aria-label="Payslip Month">
+                </div>
+            </div>
+
+            <div class="employee-summary">
+                <h2>Employee Pay Summary</h2>
+                <div class="employee-tables">
+                    <table>
+                        <tr>
+                            <td>Employee Name</td>
+                            <td><input type="text" placeholder="e.g. Meera Krishnan" style="font-size:12px;"
+                                    aria-label="Employee Name"></td>
+                        </tr>
+                        <tr>
+                            <td>Employee ID</td>
+                            <td><input type="text" placeholder="e.g. Eg 1234" style="font-size:12px;"
+                                    aria-label="Employee ID"></td>
+                        </tr>
+                        <tr>
+                            <td>Pay Date</td>
+                            <td><input type="date" style="font-size:12px;" aria-label="Pay Date"></td>
+                        </tr>
+                    </table>
+                    <table id="additionalFieldsTable">
+                        <tr>
+                            <td>Pay Period</td>
+                            <td><input type="text" placeholder="Eg. 22" style="font-size:12px;" aria-label="Pay Period">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Loss of Pay Days</td>
+                            <td><input type="number" value="0" style="font-size:12px;" aria-label="Loss of Pay Days">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Paid Days</td>
+                            <td><input type="number" value="0" style="font-size:12px;" aria-label="Paid Days"></td>
+                        </tr>
+                    </table>
+                </div>
+                <button onclick="addAnotherField()" aria-label="Add Another Field">Add Another Field</button>
+            </div>
+
+            <div class="tables">
+                <div>
+                    <h2>Earnings</h2>
+                    <table id="earningsTable">
+                        <thead>
+                            <tr>
+                                <th>Earnings Type</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="earningsBody">
+                            <tr>
+                                <td>Basic</td>
+                                <td><input type="number" value="0" oninput="calculateTotals()" style="font-size:12px;"
+                                        aria-label="Basic Earnings"></td>
+                            </tr>
+                            <tr>
+                                <td>House Rent Allowance</td>
+                                <td><input type="number" value="0" oninput="calculateTotals()" style="font-size:12px;"
+                                        aria-label="House Rent Allowance"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button onclick="addEarningsRow()" aria-label="Add Earnings Row">Add Earnings Row</button>
+                    <table>
+                        <tr>
+                            <td>Total Earnings:</td>
+                            <td id="totalEarningsDisplay" style="font-size:12px;">₹ 0.00</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h2>Deductions</h2>
+                    <table id="deductionsTable">
+                        <thead>
+                            <tr>
+                                <th>Deduction Type</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="deductionsBody">
+                            <tr>
+                                <td>Income Tax</td>
+                                <td><input type="number" value="0" oninput="calculateTotals()" style="font-size:12px;"
+                                        aria-label="Income Tax"></td>
+                            </tr>
+                            <tr>
+                                <td>Provident Fund</td>
+                                <td><input type="number" value="0" oninput="calculateTotals()" style="font-size:12px;"
+                                        aria-label="Provident Fund"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button onclick="addDeductionsRow()" aria-label="Add Deductions Row">Add Deductions Row</button>
+                    <table>
+                        <tr>
+                            <td>Total Deductions:</td>
+                            <td id="totalDeductionsDisplay" style="font-size:12px;">₹ 0.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h2>Net Payable Summary</h2>
+                <table>
+                    <tr>
+                        <td>Total Earnings:</td>
+                        <td id="totalEarnings" style="font-size:12px;">₹ 0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total Deductions:</td>
+                        <td id="totalDeductions" style="font-size:12px;">₹ 0.00</td>
+                    </tr>
+                    <tr>
+                        <td>Total Net Payable:</td>
+                        <td id="totalNetPayable" style="font-size:12px;">₹ 0.00</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="button-group">
+                <button id="my-button" onclick="printPayslip()" aria-label="Print Payslip">Print Payslip</button>
+                <button onclick="resetForm()" aria-label="Reset Form">Reset</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
