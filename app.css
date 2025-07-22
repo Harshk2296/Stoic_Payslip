@@ -260,3 +260,37 @@ h2 {
         height: 80px;
     }
 }
+
+.company-details {
+    text-align: center;
+}
+
+.company-details h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 0 0 var(--element-spacing);
+}
+
+.company-details input {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--input-padding);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: var(--element-spacing) auto;
+    display: block;
+    transition: border-color 0.3s;
+}
+
+.company-details input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+.company-details-header {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: var(--element-spacing);
+    text-align: center;
+}
